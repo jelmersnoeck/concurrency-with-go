@@ -1,0 +1,144 @@
+Concurrency with Go
+Tags: go golang
+
+Jelmer Snoeck
+Platform Reliability Engineer
+jelmer@siphoc.com
+@jelmersnoeck
+
+* $ whoami
+
+* it's all about concurrency
+
+* go func() { } ()
+
+* go func () { } ()
+
+- goroutine
+- lightweight (starts at 2kb)
+- are multiplexed onto multiple threads
+
+* go func() { } ()
+
+.play go_func_loop.go /^func main/,/^}/
+
+* go func() { } ()
+
+.play go_func_sleep.go /^func main/,/^}/
+
+* go func() { } ()
+
+.play go_func_inject.go /^func main/,/^}/
+
+* sync package
+
+* sync: WaitGroup
+
+.play go_func_slow.go /^func main/,/^}/
+
+* sync: WaitGroup
+
+.play go_func_waitgroup.go /^func main/,/^}/
+
+* sync: Mutex
+
+.play sync_map_fail.go /^func main/,/^}/
+
+* sync: Mutex
+
+.play sync_map_mutex.go /^func main/,/^}/
+
+* sync: Map
+
+.play sync_map_19.go /^func main/,/^}/
+
+* sync
+
+- WaitGroup
+- (RW)Mutex
+- Once
+- Map (1.9)
+- sync/atomic
+
+* make(chan interface{})
+
+* channels
+
+- typed values
+- synchronize state
+- exchange messages
+
+* channels
+
+.play channels_basics.go /^func main/,/^}/
+
+* channels
+
+.html channels.html
+
+* channels: select
+
+.play channels_blocking.go /^func main/,/^}/
+
+* channels: timeouts
+
+.code channels_timeouts.go /timeout/,/timeout\)/
+.code channels_timeouts.go /^func expensive/,/^}/
+
+* channels: timeouts
+
+.play channels_timeouts.go /^func main/,/^}/
+
+* channels: cancellation
+
+.code channels_cancellation.go /rand\.Intn/,/\)\)/
+.play channels_cancellation.go /^func main/,/^}/
+
+* workers
+
+* workers
+
+- pool
+- worker function
+- message
+- start
+- stop
+
+* workers
+
+.code workers_basics.go /^type Pool interface/,/^}/
+.code workers_basics.go /^type workFunc/,/\)/
+
+* workers
+
+.code workers_basics.go /^func main/,/^}/
+
+* workers
+
+.code workers_basics.go /^func.*Start/,/^}/
+.code workers_basics.go /^func.*Stop/,/^}/
+.code workers_basics.go /^func .* Add/,/^}/
+
+.code workers_basics.go /^func.*startWorkers/,/^}/
+
+* workers
+
+.code workers_basics.go /signal\.Notify/,/\)/
+.code workers_basics.go /^func.*ackSignal/,/^}/
+
+* demo
+
+* know your application
+
+* questions?
+
+* Links
+
+- Go Concurrency Patterns - Rob Pike
+.link https://youtu.be/watch?v=f6kdp27TYZs
+
+- Advanced Go Concurrency Patterns - Sameer Ajmani
+.link https://youtu.be/watch?v=QDDwwePbDtw
+
+- Go Concurrency
+.link https://golang.org/doc/effective_go.html#concurrency
